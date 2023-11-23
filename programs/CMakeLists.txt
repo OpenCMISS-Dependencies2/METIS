@@ -1,5 +1,7 @@
 # These programs use internal metis data structures.
-include_directories(../libmetis)
+#include_directories(../libmetis)
+
+find_package(GKlib)
 
 # Build program.
 add_executable(gpmetis gpmetis.c cmdline_gpmetis.c io.c stat.c)
@@ -11,10 +13,14 @@ add_executable(cmpfillin cmpfillin.c io.c smbfactor.c)
 
 # Link with the required libraries
 foreach(prog gpmetis ndmetis mpmetis m2gmetis graphchk cmpfillin)
-  target_link_libraries(${prog} metis GKlib m)
+  target_include_directories(${prog} PRIVATE ${METIS_PATH}/include ${LIBMETIS_PATH})
+  target_link_libraries(${prog} PUBLIC METIS GKlib::GKlib)
 endforeach(prog)
 
 if(METIS_INSTALL)
+  
   install(TARGETS gpmetis ndmetis mpmetis m2gmetis graphchk cmpfillin
-    RUNTIME DESTINATION bin)
+    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
+  )
+  
 endif()

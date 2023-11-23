@@ -31,6 +31,7 @@
  modifications on other architectures.
 --------------------------------------------------------------------------*/
 //#define IDXTYPEWIDTH 32
+#define IDXTYPEWIDTH 32
 
 
 /*--------------------------------------------------------------------------
@@ -41,6 +42,7 @@
    64 : double precision floating point (double)
 --------------------------------------------------------------------------*/
 //#define REALTYPEWIDTH 32
+#define REALTYPEWIDTH 64
 
 
 
