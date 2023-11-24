@@ -61,7 +61,7 @@ include(./conf/gkbuild.cmake)
 #
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${METIS_COPTIONS}")
 
-find_package(GKlib)
+find_package(GKlib REQUIRED)
 
 # Recursively look for CMakeLists.txt in subdirs.
 #add_subdirectory("build/xinclude")

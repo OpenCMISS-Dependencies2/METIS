@@ -1,5 +1,9 @@
 @PACKAGE_INIT@
 
+# Find the GKlib dependency
+include(CMakeFindDependencyMacro)
+find_dependency(GKlib)
+
 include("${CMAKE_CURRENT_LIST_DIR}/METISTargets.cmake")
 check_required_components("METIS")
 
