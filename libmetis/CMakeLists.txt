@@ -10,7 +10,7 @@ target_link_libraries(METIS PUBLIC GKlib::GKlib)
 target_include_directories(METIS
   PRIVATE
   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-  $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/libmetis/include>
+  $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/libmetis>
   INTERFACE
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
