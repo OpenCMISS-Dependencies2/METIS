@@ -1,19 +1,22 @@
 @PACKAGE_INIT@
 
-# Find the GKlib dependency
+set(METIS_MAJOR_VERSION "@METIS_VER_MAJOR@")
+set(METIS_MINOR_VERSION "@METIS_VER_MINOR@")
+set(METIS_SUBMINOR_VERION "@METIS_VER_SUBMINOR@")
+
+set(METIS_WITH_DEBUG "@DEBUG@")
+set(METIS_WITH_OPENMP "@OPENMP@")
+
 include(CMakeFindDependencyMacro)
-find_dependency(GKlib)
+
+# Find the GKlib dependency
+find_dependency(GKlib REQUIRED)
+# If necessary, find the OpenMP dependency
+if(METIS_WITH_OPENMP)
+  find_dependency(OpenMP REQUIRED)
+endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/METISTargets.cmake")
 check_required_components("METIS")
-
-get_target_property(METIS_INCLUDE_DIRECTORIES METIS::METIS INTERFACE_INCLUDE_DIRECTORIES)
-get_target_property(METIS_LINK_LIBRARIES METIS::METIS INTERFACE_LINK_LIBRARIES)
-get_target_property(METIS_IMPORTED_CONFIGURATIONS METIS::METIS IMPORTED_CONFIGURATIONS)
-foreach(config ${METIS_IMPORTED_CONFIGURATIONS})
-  get_target_property(METIS_LIBRARY_${config} METIS::METIS IMPORTED_LOCATION_${config})
-endforeach()
-set(METIS_FOUND ON)
-
 
 
